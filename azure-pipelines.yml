@@ -27,8 +27,8 @@ stages:
           - task: Maven@3
             inputs:
               mavenPomFile: 'pom.xml'
-              goals: 'test -P crossbrowser'
-            displayName: 'Run Cross-Browser Tests'
+              goals: 'mvn test -P smoke'
+            displayName: 'Run smoke Tests'
 
       - job: Publish
         dependsOn: Build
