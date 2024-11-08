@@ -21,13 +21,12 @@ stages:
               options: '-Dmaven.test.failure.ignore=true'
               goals: 'clean install'
               publishJUnitResults: true
-              javaHomeOption: 'JDKVersion'
-              jdkVersionOption: '1.11' # Specify Java version if different
           
-          - script: |
-              docker-compose up -d
-              mvn test -P crossbrowser
-            displayName: 'Run Cross-Browser Tests'
+          - task: Maven@3
+            inputs:
+              mavenPomFile: 'pom.xml'
+              goals: 'mvn test -P smoke'
+            displayName: 'Run smoke Tests'
 
       - job: Publish
         dependsOn: Build
