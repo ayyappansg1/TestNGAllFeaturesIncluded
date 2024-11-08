@@ -25,8 +25,7 @@ stages:
               jdkVersionOption: '1.11' # Specify Java version if different
           
           - script: |
-              docker-compose up -d
-              mvn test -P crossbrowser
+              mvn test -P smoke
             displayName: 'Run Cross-Browser Tests'
 
       - job: Publish
@@ -44,7 +43,7 @@ stages:
               From: 'ayyappangunasekaran5@gmail.com'
               Subject: 'Ran from AzureDevops task mail'
               Body: 'Test result bro'
-              Attachment: '$(System.DefaultWorkingDirectory)/target/surefire-reports/*'
+              Attachment: '$(System.DefaultWorkingDirectory)/target/surefire-reports/*.xml'
               SmtpServer: 'smtp.zoho.in'
               SmtpPort: '465'
               SmtpUsername: 'ayyappansg1@zohomail.in'
