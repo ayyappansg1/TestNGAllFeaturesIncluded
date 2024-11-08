@@ -1,0 +1,51 @@
+trigger:
+  branches:
+    include:
+      - master  # Adjust as per your branch structure
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  MAVEN_OPTS: '-Xmx1024m'
+
+stages:
+  - stage: Build_and_Test
+    jobs:
+      - job: Build
+        steps:
+          - task: UseJavaVersion@1
+            inputs:
+              versionSpec: '11' # Specify your Java version here
+          
+          - task: Maven@3
+            inputs:
+              mavenPomFile: 'pom.xml'
+              options: '-Dmaven.test.failure.ignore=true'
+              goals: 'clean install'
+              publishJUnitResults: true
+              javaHomeOption: 'JDKVersion'
+              jdkVersionOption: '1.11' # Specify Java version if different
+          
+          - script: |
+              docker-compose up -d
+              mvn test -P crossbrowser
+            displayName: 'Run Cross-Browser Tests'
+
+      - job: Publish
+        dependsOn: Build
+        steps:
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFiles: '**/surefire-reports/*.xml'
+              failTaskOnFailedTests: true
+  - task: SendEmail@1
+    inputs:
+      To: '$(recipients)'
+      Subject: 'Test Results - $(Build.BuildId)'
+      Body: |
+        Hi Team,
+        The latest automated tests have been executed. Please find the results attached.
+
+      Attachments: '$(System.DefaultWorkingDirectory)/target/surefire-reports/*'
+              
