@@ -22,12 +22,9 @@ stages:
               goals: 'clean install'
               publishJUnitResults: true
           
-          - task: Maven@3
+          - task: CmdLine@2
             inputs:
-              mavenPomFile: 'pom.xml'
-              goals: 'mvn test -P smoke'
-            displayName: 'Run smoke Tests'
-
+              script: 'mvn test -P smoke'
       - job: Publish
         dependsOn: Build
         steps:
