@@ -23,7 +23,7 @@ stages:
           - task: Maven@3
             inputs:
               mavenPomFile: 'pom.xml'
-              goals: 'test -P crossbrowser -Dsurefire.suiteXmlFiles=testng_crossBrowser.xml'
+              goals: 'test -P smoke -Dsurefire.suiteXmlFiles=testng.xml'
 
       - job: Publish
         dependsOn: Build
