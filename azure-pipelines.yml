@@ -25,7 +25,8 @@ stages:
               jdkVersionOption: '1.11' # Specify Java version if different
           
           - script: |
-              mvn test -P smoke
+              docker-compose up -d
+              mvn test -P crossbrowser
             displayName: 'Run Cross-Browser Tests'
 
       - job: Publish
