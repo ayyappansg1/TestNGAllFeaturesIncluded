@@ -24,9 +24,10 @@ stages:
               javaHomeOption: 'JDKVersion'
               jdkVersionOption: '1.11' # Specify Java version if different
           
-          - script: |
-              docker-compose up -d
-              mvn test -P crossbrowser
+          - task: Maven@3
+            inputs:
+              mavenPomFile: 'pom.xml'
+              goals: 'test -P crossbrowser'
             displayName: 'Run Cross-Browser Tests'
 
       - job: Publish
