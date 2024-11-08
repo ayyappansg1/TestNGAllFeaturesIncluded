@@ -18,9 +18,7 @@ stages:
           - task: Maven@3
             inputs:
               mavenPomFile: 'pom.xml'
-              options: '-Dmaven.test.failure.ignore=true'
-              goals: 'clean install test'
-              publishJUnitResults: true
+              goals: 'clean install'
           
           - task: CmdLine@2
             inputs:
