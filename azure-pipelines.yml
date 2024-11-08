@@ -21,8 +21,6 @@ stages:
               options: '-Dmaven.test.failure.ignore=true'
               goals: 'clean install'
               publishJUnitResults: true
-              javaHomeOption: 'JDKVersion'
-              jdkVersionOption: '1.11' # Specify Java version if different
           
           - task: Maven@3
             inputs:
