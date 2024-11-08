@@ -20,9 +20,11 @@ stages:
               mavenPomFile: 'pom.xml'
               goals: 'clean install'
           
-          - task: CmdLine@2
+          - task: Maven@3
             inputs:
-              script: 'mvn test -P smoke'
+              mavenPomFile: 'pom.xml'
+              goals: 'test -P crossbrowser -Dsurefire.suiteXmlFiles=testng_crossBrowser.xml'
+
       - job: Publish
         dependsOn: Build
         steps:
