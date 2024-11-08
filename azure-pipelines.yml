@@ -14,9 +14,6 @@ stages:
     jobs:
       - job: Build
         steps:
-          - task: UseJavaVersion@1
-            inputs:
-              versionSpec: '11' # Specify your Java version here
           
           - task: Maven@3
             inputs:
@@ -39,13 +36,16 @@ stages:
             inputs:
               testResultsFiles: '**/surefire-reports/*.xml'
               failTaskOnFailedTests: true
-  - task: SendEmail@1
-    inputs:
-      To: '$(recipients)'
-      Subject: 'Test Results - $(Build.BuildId)'
-      Body: |
-        Hi Team,
-        The latest automated tests have been executed. Please find the results attached.
-
-      Attachments: '$(System.DefaultWorkingDirectory)/target/surefire-reports/*'
-              
+          
+          - task: SendEmail@0
+            inputs:
+              To: 'ayyappangunasekaran5@gmail.com'
+              CC: 'ayyappangunasekaran5@gmail.com'
+              From: 'ayyappangunasekaran5@gmail.com'
+              Subject: 'Ran from AzureDevops task mail'
+              Body: 'Test result bro'
+              Attachment: '$(System.DefaultWorkingDirectory)/target/surefire-reports/*.xml'
+              SmtpServer: 'smtp.zoho.in'
+              SmtpPort: '465'
+              SmtpUsername: 'ayyappansg1@zohomail.in'
+              SmtpPassword: 'FArvYhxi2Emk'
