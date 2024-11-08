@@ -27,28 +27,28 @@ public class DriverFactory {
 			case EDGE:
 				logger.info("Launching edge Browser");
 		        EdgeOptions options = new EdgeOptions();
-				//driver=new EdgeDriver(options);
-	            driver = new RemoteWebDriver(new URL(gridUrl), options);
+				driver=new EdgeDriver(options);
+	            //driver = new RemoteWebDriver(new URL(gridUrl), options);
 				break;
 			case CHROME:
 				logger.info("Launching Chrome Browser");
 				//capabilities.setBrowserName("chrome");
 				ChromeOptions chromeOptions=new ChromeOptions();
-				//driver=new ChromeDriver(chromeOptions);
-	            driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
+				driver=new ChromeDriver(chromeOptions);
+	            //driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
 				break;
 			case FIREFOX:
 				logger.info("Launching firefox Browser");
 				FirefoxOptions firefoxOptions=new FirefoxOptions();
 				//capabilities.setBrowserName("chrome");
-				//driver=new FirefoxDriver();
-	            driver = new RemoteWebDriver(new URL(gridUrl),firefoxOptions);
+				driver=new FirefoxDriver();
+	            //driver = new RemoteWebDriver(new URL(gridUrl),firefoxOptions);
 				break;
 			default:
 				ChromeOptions chromeOptionsdef=new ChromeOptions();
-				//driver=new ChromeDriver(chromeOptionsdef);
+				driver=new ChromeDriver(chromeOptionsdef);
 				logger.info("Defaulting to Chrome Browser on Docker");
-	            driver = new RemoteWebDriver(new URL(gridUrl), new ChromeOptions());
+	            //driver = new RemoteWebDriver(new URL(gridUrl), new ChromeOptions());
 	            break;
 			}
 	        return driver;

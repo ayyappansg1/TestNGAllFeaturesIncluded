@@ -84,12 +84,12 @@ public class Runner extends AbstractTestNGCucumberTests {
 //	    allureAttachment.setName("AllureReport.zip");
 
 	    email = new MultiPartEmail();
-	    email.setHostName("smtp.mail.yahoo.com");
+	    email.setHostName("smtp.zoho.in");
 	    email.setSmtpPort(465);
 	    email.setSSLOnConnect(true);
-	    email.setAuthentication("ayyappantestingmail1@yahoo.com", "1222");
-	    email.setFrom("ayyappantestingmail1@yahoo.com");
-	    email.addTo("ayyappantestingmail1@yahoo.com");
+	    email.setAuthentication("ayyappansg1@zohomail.in", "FArvYhxi2Emk");
+	    email.setFrom("ayyappansg1@zohomail.in");
+	    email.addTo("ayyappangunasekaran5@gmail.com");
 	    email.setMsg("Hi sir, Automated Mail");
 	    email.setSubject("HerokuApp automation result-" + emailContent.toString() + "- " + dateAndTime());
 	    email.setSocketConnectionTimeout(60000); 

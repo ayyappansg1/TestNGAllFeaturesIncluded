@@ -148,7 +148,6 @@ public class RunnerRegression extends AbstractTestNGCucumberTests {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMMMyyyy h.mma");
 		String formattedDateTime = currentDateTime.format(formatter);
 		return formattedDateTime;
-
 	}
 
 }
