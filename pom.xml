@@ -21,34 +21,25 @@
 				</configuration>
 			</plugin>
 			<!-- Surefire Plugin to run JUnit or TestNG tests -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M5</version>
-				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>${surefire.suiteXmlFiles}</suiteXmlFile>
-					</suiteXmlFiles>
-				</configuration>
-			</plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.0.0-M5</version>
+    <configuration>
+        <suiteXmlFiles>
+            <suiteXmlFile>${surefire.suiteXmlFiles}</suiteXmlFile>
+        </suiteXmlFiles>
+    </configuration>
 		</plugins>
 	</build>
 	<profiles>
 		<profile>
 			<id>smoke</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<suiteXmlFiles>
-								<suiteXmlFile>testng.xml</suiteXmlFile>
-							</suiteXmlFiles>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
+			<activation>
+            <activeByDefault>false</activeByDefault>
+        </activation>
+        <properties>
+            <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
+        </properties>
 		</profile>
 		<profile>
 			<id>regression</id>
