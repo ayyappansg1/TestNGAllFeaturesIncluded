@@ -3,7 +3,7 @@ name: Cross-Browser Testing with Maven and Docker
 on:
   push:
     branches:
-      - main  # Adjust branch names as needed
+      - master  # Adjust branch names as needed
   pull_request:
 
 jobs:
@@ -71,11 +71,11 @@ jobs:
       - name: Send Email with Test Results
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: ${{ secrets.SMTP_SERVER }}
-          server_port: ${{ secrets.SMTP_PORT }}
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
+          server_address: smtp.zoho.in
+          server_port: 465
+          username: ayyappansg1@zohomail.in
+          password: FArvYhxi2Emk
           subject: "Test Results - ${{ github.run_id }}"
           body: "Hi Team, \nThe latest test results are available. Please see the attached reports."
-          to: "your-email@example.com"
+          to: "ayyappangunasekaran5@gmail.com"
           attachments: "target/surefire-reports/*"
