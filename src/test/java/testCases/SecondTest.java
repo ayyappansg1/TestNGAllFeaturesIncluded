@@ -208,4 +208,6 @@ public class SecondTest extends BaseClass {
 		Assert.assertTrue(secondPage.clickAndValidate404StatusCode(404),"Status Code is not as expected");
 		Assert.assertTrue(secondPage.clickAndValidate500StatusCode(500),"Status Code is not as expected");
 	}
+	
+	
 }
