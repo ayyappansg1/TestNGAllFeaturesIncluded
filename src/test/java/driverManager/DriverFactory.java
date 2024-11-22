@@ -34,6 +34,8 @@ public class DriverFactory {
 				logger.info("Launching Chrome Browser");
 				//capabilities.setBrowserName("chrome");
 				ChromeOptions chromeOptions=new ChromeOptions();
+				chromeOptions.addArguments("--headless"); // Run browser in headless mode
+				chromeOptions.addArguments("--disable-gpu");
 				driver=new ChromeDriver(chromeOptions);
 	            //driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
 				break;

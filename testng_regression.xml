@@ -3,11 +3,15 @@
 <suite name="Suite" parallel="false" thread-count="3">
 	<listeners>
 		<listener class-name="listener.Listener"></listener>
+		<listener class-name="utils.ExtentReportListener"></listener>
 	</listeners>
 	<test name="Regression Testing running">
 		<parameter name="browser" value="chrome"></parameter>
+		<parameter name="username" value="admin"></parameter>
+		<parameter name="password" value="admin"></parameter>
 		<classes>
-			<class name="runner.RunnerRegression"></class>
+			<class name="testCases.FirstTest"></class>
+			<class name="testCases.SecondTest"></class>
 		</classes>
 	</test>
 </suite> <!--
