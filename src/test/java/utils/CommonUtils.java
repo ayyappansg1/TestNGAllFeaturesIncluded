@@ -69,6 +69,10 @@ public class CommonUtils {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 	    return ts.getScreenshotAs(OutputType.BASE64);
 	}
+	public static byte[] screenshotAsByte(WebDriver driver) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		return ts.getScreenshotAs(OutputType.BYTES);
+	}
 
 	public static String todayDate() {
 		Date date = new Date();
