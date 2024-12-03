@@ -566,8 +566,14 @@ public class Step_Definitions extends BaseClass {
 	}
 	@When("the user clicks Click here button")
 	public void the_user_clicks_click_here_button() {
-		secondPage.clickClickHereNotification();
+		secondPage.clickClickHereRedirectLinkbutton();
 	}
+	@Then("the user on the {string} url page")
+	public void the_user_on_the_statuscode_url_page(String text) {
+		Assert.assertTrue(secondPage.verifyURLAfterRedirectClick(text),"landed in incorrect url");
+	}
+
+
 	@Then("the user should see {string} or {string} message")
 	public void the_user_should_see_message(String string,String string2) {
 		Assert.assertTrue(secondPage.verifyTheFirstNotificationMessage(string,string2),"First message not equal");
@@ -588,7 +594,6 @@ public class Step_Definitions extends BaseClass {
 	public void the_user_clicks_the_button_with_scroll_to_last(String string) {
 		homePage.clickSecurefiledownloadButton();
 	}
-
 
 @Then("the user should see the downloaded file in Local download folder")
 public void the_user_should_see_the_downloaded_file_in_local_download_folder() throws InterruptedException {

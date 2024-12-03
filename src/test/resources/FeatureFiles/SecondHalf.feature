@@ -118,11 +118,10 @@ Feature: Second Half
     And the user clicks again until new message appears not be same as above one
     Then the user should see opposite to previous one
 
-  @smoke
-  Scenario: Redirect Link
+ Scenario: Redirect Link
     Given the user clicks the RedirectLink Button
     When the user clicks Click here button
-    Then the user on the topframe and should see right frame text "RIGHT"
+    Then the user on the "status_codes" url page
 
   @smoke
   Scenario: SecureFileDownload Link
@@ -165,7 +164,7 @@ Feature: Second Half
     When the user clicks sorting in Email table all the elements should be in sorting order from second table
     When the user clicks sorting in Due table all the elements should be in sorting order from second table
     When the user clicks sorting in WebSite table all the elements should be in sorting order from second table
-
+@smoke
   Scenario: Status codes
     Given the user clicks the StatusCodes Button
     When the user clicks the 200 hyperlink api should return 200

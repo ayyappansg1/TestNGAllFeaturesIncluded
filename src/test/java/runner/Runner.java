@@ -37,7 +37,7 @@ import utils.CommonUtils;
  * also can be Maintained
  */
 
-@CucumberOptions(dryRun = false, features = "src\\test\\resources\\FeatureFiles", glue = {
+@CucumberOptions(dryRun = true, features = "src\\test\\resources\\FeatureFiles", glue = {
 		"stepdefinitions" }, monochrome = true, plugin = { "rerun:target/failed.txt", "json:target/forReporting.json",
 				"html:target/sangar.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" },

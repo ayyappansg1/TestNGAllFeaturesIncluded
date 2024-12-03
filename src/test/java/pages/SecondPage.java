@@ -184,7 +184,8 @@ public class SecondPage extends LocalHelper {
 	private WebElement FourZeroFourHyperLink;
 	@FindBy(xpath = "//a[text()='500']")
 	private WebElement FiveZeroZeroHyperLink;
-	
+	@FindBy(xpath = "//a[@href='redirect']")
+	private WebElement clickHereRedirectLink;
 	public void clickWhereAmIButton() {
 		clickElement(whereAmIButton, driver);
 	}
@@ -594,5 +595,13 @@ public class SecondPage extends LocalHelper {
 		List<String> fullUrl = useDevToolstoGrabAPINetworks.stream().filter((string)->string.contains("com/status_codes/500")).collect(Collectors.toList());
 		logger.info("500 url is :"+fullUrl.get(0));
 		return hitParticularAPIUsingInbuiltJava(fullUrl.get(0))==statusCode;
+	}
+
+	public void clickClickHereRedirectLinkbutton() {
+		clickElement(clickHereRedirectLink, driver);
+	}
+
+	public boolean verifyURLAfterRedirectClick(String text) {
+		return verifyUrlContainsExpectedText(text, driver);
 	}
 }
