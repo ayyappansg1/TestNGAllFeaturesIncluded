@@ -12,9 +12,6 @@ import java.util.Comparator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
-
 public class AllureLogger {
 	private static final Logger logger=LogManager.getLogger(AllureLogger.class);
 
@@ -47,7 +44,6 @@ public class AllureLogger {
           if (latestLogFile != null && latestLogFile.exists()) {
               FileInputStream logStream = new FileInputStream(latestLogFile);
               logger.info("File name is :"+latestLogFile);
-              Allure.addAttachment("Log File", logStream);
           } else {
               logger.warn("No log file found to attach.");
           }

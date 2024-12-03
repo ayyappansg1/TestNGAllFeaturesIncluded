@@ -6,12 +6,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
 
 import constants.Constants;
@@ -52,22 +54,20 @@ public class CommonUtils {
 
 	public static String screenshot(String fileName) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
-		File screenshotAs = ts.getScreenshotAs(OutputType.FILE);
-		File file = new File(System.getProperty("user.dir") + File.separator + "target" + File.separator + "screenshots"
-				+ File.separator + todayDate());
-		logger.info("Today date is " + todayDate());
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-		File destination = new File(file, fileName + ".png");
-		FileHandler.copy(screenshotAs, destination);
-		return destination.getAbsolutePath();
+	    File screenshotAs = ts.getScreenshotAs(OutputType.FILE);
+	    String screenshotPath = System.getProperty("user.dir") + File.separator + "target" + File.separator + "screenshots";
+	    File directory = new File(screenshotPath);
+	    if (!directory.exists()) {
+	        directory.mkdirs();
+	    }
+	    File destination = new File(directory, fileName + ".png");
+	    FileHandler.copy(screenshotAs, destination);
+	    return destination.getAbsolutePath();
 	}
 
-	public static byte[] screenshotAsByte() throws IOException {
-		TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
-		byte[] bytes = ts.getScreenshotAs(OutputType.BYTES);
-		return bytes;
+	public static String screenshotAsBase64(WebDriver driver) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+	    return ts.getScreenshotAs(OutputType.BASE64);
 	}
 
 	public static String todayDate() {
@@ -76,14 +76,12 @@ public class CommonUtils {
 		return sdf.format(date);
 	}
 	public static void cleanAllureResults() {
-        File allureResultsFolder = new File("allure-results");
-        if (allureResultsFolder.exists()) {
-            for (File file : allureResultsFolder.listFiles()) {
-                if (!file.isDirectory()) {
-                    file.delete();
-                }
-            }
-        }
+		File allureResultsDir = new File(System.getProperty("user.dir") + "/allure-results");
+	    if (allureResultsDir.exists()) {
+	        for (File file : Objects.requireNonNull(allureResultsDir.listFiles())) {
+	            file.delete();
+	        }
+	    }
     }
 
 }

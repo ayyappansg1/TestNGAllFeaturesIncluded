@@ -19,7 +19,6 @@ import org.testng.Assert;
 
 import com.github.javafaker.Faker;
 
-import driverManager.DriverManager;
 import helper.LocalHelper;
 
 public class HomePage extends LocalHelper{

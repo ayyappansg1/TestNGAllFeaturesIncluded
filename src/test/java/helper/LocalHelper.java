@@ -50,7 +50,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import driverManager.DriverManager;
-import freemarker.core.JavaScriptCFormat;
 
 /**
  * Local helper class contains all Reusable action able methods with Wait
