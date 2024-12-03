@@ -10,8 +10,9 @@
 		<parameter name="username" value="admin"></parameter>
 		<parameter name="password" value="admin"></parameter>
 		<classes>
-			<class name="testCases.FirstTest"></class>
-			<class name="testCases.SecondTest"></class>
+			<!--<class name="testCases.FirstTest"></class> -->
+			<!--<class name="testCases.SecondTest"></class> -->
+			<class name="testCases.ThirdClassRahul"></class>
 		</classes>
 	</test>
 </suite> <!--

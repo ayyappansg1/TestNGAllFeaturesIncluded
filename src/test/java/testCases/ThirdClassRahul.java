@@ -1,10 +1,12 @@
 package testCases;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,22 +17,26 @@ import org.openqa.selenium.devtools.v85.network.Network;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ThirdClassRahul {
+import baseClass.BaseClass;
+
+public class ThirdClassRahul extends BaseClass {
 	
 	@Test
-	public void launchingAndMockingResponse() {
+	public void launchingAndMockingResponse() throws MalformedURLException {
 		ChromeOptions options=new ChromeOptions();
 		options.addArguments("--start-maximized");
-		ChromeDriver driver=new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		driver.get("https://rahulshettyacademy.com/client");
-		driver.findElement(By.cssSelector("#userEmail")).sendKeys("ayyappangunasekaran5@gmail.com");
-		driver.findElement(By.cssSelector("#userPassword")).sendKeys("9442768022");
-		driver.findElement(By.cssSelector("#login")).click();
+		//ChromeDriver driver=new ChromeDriver(options);
+		ChromeDriver driver2 = (ChromeDriver)getDriver();
+		driver2.manage().window().maximize();
+		driver2.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		driver2.get("https://rahulshettyacademy.com/client");
+		driver2.findElement(By.cssSelector("#userEmail")).sendKeys("ayyappangunasekaran5@gmail.com");
+		driver2.findElement(By.cssSelector("#userPassword")).sendKeys("9442768022");
+		driver2.findElement(By.cssSelector("#login")).click();
 		//674007b5ae2afd4c0bc8d134
 		
-		driver.findElement(By.xpath("//button[contains(@routerlink,'/dashboard/myorders')]")).click();
-		DevTools devTools = driver.getDevTools();
+		driver2.findElement(By.xpath("//button[contains(@routerlink,'/dashboard/myorders')]")).click();
+		DevTools devTools = driver2.getDevTools();
 		devTools.createSession();
 		devTools.send(Fetch.enable(
 				Optional.of(
@@ -55,8 +61,8 @@ public class ThirdClassRahul {
 				devTools.send(Fetch.continueRequest(request.getRequestId(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty()));
 			}
 		});
-		driver.findElements(By.xpath("//button[text()='View']")).get(0).click();
-		WebElement findElement = driver.findElement(By.xpath("//p[text()='You are not authorize to view this order']"));
+		driver2.findElements(By.xpath("//button[text()='View']")).get(0).click();
+		WebElement findElement = driver2.findElement(By.xpath("//p[text()='You are not authorize to view this order']"));
 		Assert.assertTrue(findElement.getText().contains(" not authorize"),"Order is visible for this user");
 	}
 
