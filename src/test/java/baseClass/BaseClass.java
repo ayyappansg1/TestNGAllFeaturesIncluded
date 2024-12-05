@@ -72,10 +72,6 @@ public class BaseClass extends DriverManager{
 		DriverManager.setBrowserName(browser);
 	}
 
-//	@AfterSuite(alwaysRun = true)
-//	public void generateReporting() {
-//		Reporting.generateReport(System.getProperty("user.dir")+File.separator+"target"+File.separator+"forReporting.json");
-//	}
 	@AfterSuite(alwaysRun = true)
 	public void sendEmail() throws EmailException {
 		generateAllureReport(); // Step 1: Generate Allure report
@@ -175,13 +171,8 @@ public class BaseClass extends DriverManager{
 	public String dateAndTime() {
 		LocalDateTime currentDateTime = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMMMyyyy h.mma");
-		String formattedDateTime = currentDateTime.format(formatter);
-		return formattedDateTime;
+		return currentDateTime.format(formatter);
 	}
-//	@Attachment(value = "Failed Test Screenshot", type = "image/png")
-//	public byte[] attachScreenshot() throws WebDriverException, MalformedURLException {
-//	    return ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
-//	}
 	@Attachment(value = "{0}", type = "text/plain")
     public static String attachLog(String message) {
         logger.info(message);
@@ -190,7 +181,6 @@ public class BaseClass extends DriverManager{
 	@AfterMethod(alwaysRun = true)
 	public void tearDownAfterMethod(ITestResult result) throws IOException {
 		if(result.getStatus()==ITestResult.FAILURE||result.getStatus()==ITestResult.SKIP) {
-//			attachScreenshot();
             attachLog(String.valueOf(result.getMethod()).replaceAll("[()]",""));
             String screenshotPath = CommonUtils.screenshot(result.getName());
             logger.info("screenshot absolute path is :"+screenshotPath);
@@ -198,9 +188,6 @@ public class BaseClass extends DriverManager{
 			Allure.addAttachment("Screenshot", stream);
 			String base64Screenshot  = CommonUtils.screenshotAsBase64(getDriver());
 			ExtentReportListener.getTest().addScreenCaptureFromBase64String(base64Screenshot, "Screenshot on failure");
-//			ExtentTest createTest = ExtentReportManager.getInstance().createTest(result.getName());
-//			String relativePath = System.getProperty("user.dir")+"\\target\\screenshots\\" + result.getName() + ".png";
-//			ExtentReportListener.getTest().addScreenCaptureFromPath(relativePath, "Failure Screenshot");
 		}
 		DriverManager.quitDriver();
 	}

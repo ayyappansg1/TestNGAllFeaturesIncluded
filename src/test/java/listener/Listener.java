@@ -36,23 +36,4 @@ public class Listener implements ITestListener {
 	public void onTestSkipped(ITestResult result) {
 		logger.error("Test case Skipped : " + result.getMethod());
 	}
-//	public void onTestStart(ITestResult result) {
-//		sparkReporter=new ExtentSparkReporter(new File("extent-listener.html"));
-//		reports.attachReporter(sparkReporter);
-//		test = reports.createTest("Test started:"+result.getName());
-//	  }
-//	 public void onTestSuccess(ITestResult result) {
-//		 test.pass("Test passed"+result.getName());
-//		  }
-//	
-//	public void onTestFailure(ITestResult result) {
-//		test.fail("Test got failed"+result.getName());
-//		try {
-//			test.addScreenCaptureFromPath(CommonUtils.getInstance().screenshot(result.getName()));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-
 }

@@ -32,17 +32,13 @@ public class DriverFactory {
 				break;
 			case CHROME:
 				logger.info("Launching Chrome Browser");
-				//capabilities.setBrowserName("chrome");
 				ChromeOptions chromeOptions=new ChromeOptions();
-				//chromeOptions.addArguments("--headless"); // Run browser in headless mode
-				//chromeOptions.addArguments("--disable-gpu");
 				driver=new ChromeDriver(chromeOptions);
 	            //driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
 				break;
 			case FIREFOX:
 				logger.info("Launching firefox Browser");
 				FirefoxOptions firefoxOptions=new FirefoxOptions();
-				//capabilities.setBrowserName("chrome");
 				driver=new FirefoxDriver();
 	            //driver = new RemoteWebDriver(new URL(gridUrl),firefoxOptions);
 				break;
